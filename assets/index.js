@@ -4,23 +4,29 @@ class MyParagraph extends HTMLParagraphElement {
       super();
     }
   }
-
-
 customElements.define("my-paragraph", MyParagraph, { extends: "p" });
 
 class RickMorty extends HTMLElement {
     constructor() {
       self = super();
   
+      const id = this.getAttribute("data-id") || 1;
       const shadow = this.attachShadow({ mode: "open" });
 
       const div = document.createElement("div");
+      div.setAttribute('id', `rick-morty-${id}`)
       div.textContent = 'Loading...';
       const style = document.createElement("style");
-      shadow.appendChild(style);
-      shadow.appendChild(div);
+      style.textContent = `
+      img {
+        border-radius: 50%;
+      }
+      `;
 
-      fetch('https://rickandmortyapi.com/api/character/2')
+      shadow.append(style,div);
+
+
+      fetch(`https://rickandmortyapi.com/api/character/${id}`)
         .then(response => {
             if(response.ok){
                 return response.json();
@@ -30,14 +36,9 @@ class RickMorty extends HTMLElement {
         .then(json => {
             const image = document.createElement('img');
             image.src = json.image;
-            
-            
             div.textContent = '';
             div.appendChild(image);
-            
         })
-
-
     }
   }
 

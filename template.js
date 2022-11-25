@@ -10,10 +10,14 @@ function template(req, res) {
                 <my-paragraph>
                     Show a styled webcomponent that is not affected by the outside styling.
                 </my-paragraph>
-                <rick-morty></rick-morty>
+                <p>
+                <rick-morty data-id="1"></rick-morty>
+                <rick-morty data-id="2"></rick-morty>
             </body>
             <footer>
-                Footer
+                <div class="footer">
+                    Footer
+                </div>    
             </footer>
             <script src="/assets/index.js"></script>            
         </html>
