@@ -14,7 +14,8 @@ function template(req, res) {
             <body>
                 <h1>Webcomponents example</h1>
                 <my-paragraph>
-                    Show a styled webcomponent that is not affected by the outside styling.
+                    Show a styled webcomponent that is not affected by the outside styling. <br/>
+                    Se the source on <a href="https://github.com/stalet/webcomponents-example">GitHub</a>
                 </my-paragraph>
                 <p>
                 <rick-morty data-id="${between(1,827)}"></rick-morty>
