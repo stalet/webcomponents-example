@@ -13,6 +13,9 @@ function template(req, res) {
                 <p>
                 <rick-morty data-id="1"></rick-morty>
                 <rick-morty data-id="2"></rick-morty>
+                <rick-morty data-id="3"></rick-morty>
+                <rick-morty data-id="4"></rick-morty>
+                <rick-morty data-id="5"></rick-morty>
             </body>
             <footer>
                 <div class="footer">

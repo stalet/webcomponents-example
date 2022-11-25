@@ -20,7 +20,7 @@
         fabric.type = "text/css";
 
         const div = document.createElement("div");
-        div.setAttribute('id', `rick-morty-${id}`)
+        div.setAttribute("class", "flex content-center bg-aqua-100 border-solid border border-aqua-700 border-aqua-700 shadow-2 rounded-16 mt-16 md:max-w-screen-sm");
         div.textContent = 'Loading...';
         const style = document.createElement("style");
         style.textContent = `
@@ -38,10 +38,43 @@
             })
             .then(json => {
                 const image = document.createElement('img');
-                image.setAttribute("class", "rounded-16 m-8 mt-16");
+                image.setAttribute("class", "rounded-l-16 mr-8");
+                image.width = 150;
+                image.height = 150;
                 image.src = json.image;
                 div.textContent = '';
-                div.appendChild(image);
+                
+                const desc = document.createElement('table');
+                desc.setAttribute("class", "table-auto m-8 text-14 text-aqua-900")
+                
+                desc.innerHTML = `
+                    <tr>
+                        <td class="font-bold">Name:</td>
+                        <td>${json.name}</td>
+                    </tr>    
+                    <tr>
+                        <td class="font-bold">Status:</td>
+                        <td>${json.status}</td>
+                    </tr>    
+                    <tr>
+                        <td class="font-bold">Species:</td>
+                        <td>${json.species}</td>
+                    </tr>    
+                    <tr>
+                        <td class="font-bold">Gender:</td>
+                        <td>${json.gender}</td>
+                    </tr>    
+                    <tr>
+                        <td class="font-bold">Origin:</td>
+                        <td>${json.origin.name}</td>
+                    </tr>    
+                    <tr>
+                        <td class="font-bold">Location:</td>
+                        <td>${json.location.name}</td>
+                    </tr>    
+                `;
+
+                div.append(image,desc);
             })
         }
     }
