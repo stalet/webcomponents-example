@@ -20,10 +20,25 @@
         fabric.type = "text/css";
 
         const div = document.createElement("div");
-        div.setAttribute("class", "flex content-center bg-aqua-100 border-solid border border-aqua-700 border-aqua-700 shadow-2 rounded-16 mt-16 md:max-w-screen-sm");
-        div.textContent = 'Loading...';
+        div.setAttribute("class", "elem flex content-center bg-aqua-100 border-solid border border-aqua-700 border-aqua-700 shadow-2 rounded-16 mt-16 md:max-w-screen-sm");
         const style = document.createElement("style");
         style.textContent = `
+         .elem {
+            animation: slidein 0.5s forwards;
+          }
+          
+          @keyframes slidein {
+            from {
+              height: 0px;
+              transform: scale(0);
+              opacity: 0;
+            }
+            to {
+              height:var(--h); /*This will change for each element */
+              transform: scale(1);
+              opacity: 1;
+            }
+          }
         `;
 
         shadow.append(fabric,style,div);
@@ -42,10 +57,9 @@
                 image.width = 150;
                 image.height = 150;
                 image.src = json.image;
-                div.textContent = '';
                 
                 const desc = document.createElement('table');
-                desc.setAttribute("class", "table-auto m-8 text-14 text-aqua-900")
+                desc.setAttribute("class", "elem table-auto m-8 text-14 text-aqua-900")
                 
                 desc.innerHTML = `
                     <tr>
