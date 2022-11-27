@@ -19,8 +19,6 @@
         fabric.rel = "stylesheet";
         fabric.type = "text/css";
 
-        const div = document.createElement("div");
-        div.setAttribute("class", "elem flex content-center bg-aqua-100 border-solid border border-aqua-700 border-aqua-700 shadow-2 rounded-16 mt-16 md:max-w-screen-sm");
         const style = document.createElement("style");
         style.textContent = `
          .elem {
@@ -41,17 +39,21 @@
           }
         `;
 
-        shadow.append(fabric,style,div);
-
+        shadow.append(fabric,style);
 
         fetch(`https://rickandmortyapi.com/api/character/${id}`)
             .then(response => {
                 if(response.ok){
                     return response.json();
-                }
-                div.textContent = `Error ${response.status} ${response.statusText}`;
+                }        
+                const errorDiv = document.createElement("div");
+                errorDiv.textContent = `Error getting rick and morty id=${id}. Response: ${response.status} ${response.statusText}`;
+                shadow.appendChild(errorDiv);
             })
             .then(json => {
+                const div = document.createElement("div");
+                div.setAttribute("class", "elem flex content-center bg-aqua-100 border-solid border border-aqua-700 border-aqua-700 shadow-2 rounded-16 mt-16 md:max-w-screen-sm");        
+
                 const image = document.createElement('img');
                 image.setAttribute("class", "rounded-l-16 mr-8");
                 image.width = 150;
@@ -89,6 +91,7 @@
                 `;
 
                 div.append(image,desc);
+                shadow.appendChild(div);
             })
         }
     }
